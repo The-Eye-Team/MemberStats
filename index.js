@@ -40,6 +40,11 @@ client.on("ready", () => {
     c_donor.setName(`Donators: ${formatNumber(donor_count)}`);
 });
 
+// don't crash when errors happen
+client.on("error", (err) => {
+    console.error("error:", err);
+});
+
 client.on("guildMemberAdd", (member) => {
     const c_total = member.guild.channels.get(V_CHANNEL_TOTAL);
     const current = parseInt(c_total.name.split(" ")[1].split(",").join(""));
